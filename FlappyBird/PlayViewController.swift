@@ -11,6 +11,7 @@ import UIKit
 class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
 
     
+    @IBOutlet var scoreViewRootView: UIView!
     var score: Int = 0
     
     var replayButton: FlappyButton?
@@ -21,6 +22,8 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     var tutorialImage: UIImage?
     
     var pipeGeneratorTimer: NSTimer?
+    
+    var scoreView: ScoreView?
     
     lazy var animator: UIDynamicAnimator = {
         let laziedAnimator = UIDynamicAnimator(referenceView: self.view)
@@ -34,6 +37,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         tutorialImageFrame = tutorialImageView.frame
         tutorialImage = tutorialImageView.image
         
+        initScoreView()
         bird.configureFlyImage("bird2_0", image2: "bird2_1", image3: "bird2_2", dieY: background.frame.origin.y, startPoint: CGPoint(x: background.frame.height / 2, y: (self.view.frame.height - background.frame.height) / 2))
         bird.animate()
         background.configure(UIImage(named: "land")!)
@@ -82,6 +86,15 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
     }
     
+    func initScoreView() {
+        if scoreView == nil {
+            self.scoreView = ScoreView(width: scoreViewRootView.frame.width / 10, centerPoint: scoreViewRootView.center)
+            scoreViewRootView.addSubview(scoreView!)
+        } else {
+            scoreView?.newScore(0)
+        }
+    }
+    
     func initReplayButton() {
         replayButton = FlappyButton(type: .Custom)
         let playButtonImage = UIImage(named: "button_play")!
@@ -125,6 +138,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         view.addSubview(pipe)
         view.bringSubviewToFront(background)
         view.bringSubviewToFront(replayButton!)
+        view.bringSubviewToFront(scoreViewRootView)
         pipe.configure(background.frame.height, startX: self.view.frame.width, birdSize: 48, downPipeImage: UIImage(named: "pipe_down")!,
             upPipeImage: UIImage(named: "pipe_up")!)
     }
@@ -136,6 +150,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     func scoreUp() {
         score++
+        scoreView!.newScore(score)
         print("score: \(score)")
     }
     
@@ -150,6 +165,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     func replay() {
         print("perform replay")
         score = 0
+        initScoreView()
         removePipes()
         replayButton?.removeFromSuperview()
         initReplayButton()

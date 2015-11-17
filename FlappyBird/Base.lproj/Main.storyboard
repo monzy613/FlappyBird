@@ -73,6 +73,55 @@
             </objects>
             <point key="canvasLocation" x="65.5" y="-28.5"/>
         </scene>
+        <!--Score View Test View Controller-->
+        <scene sceneID="4v8-3s-3CW">
+            <objects>
+                <viewController id="2ja-T7-Rcc" customClass="ScoreViewTestViewController" customModule="FlappyBird" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hhz-xV-Zfe"/>
+                        <viewControllerLayoutGuide type="bottom" id="hZv-FI-TlU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jXN-sJ-o50">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dNK-ya-xIM">
+                                <rect key="frame" x="0.0" y="591" width="375" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klk-9h-YUV">
+                                <rect key="frame" x="161" y="629" width="53" height="30"/>
+                                <state key="normal" title="Change"/>
+                                <connections>
+                                    <action selector="changeScore:" destination="2ja-T7-Rcc" eventType="touchUpInside" id="kjg-om-YHi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hZv-FI-TlU" firstAttribute="top" secondItem="klk-9h-YUV" secondAttribute="bottom" constant="8" id="1Tw-jb-uei"/>
+                            <constraint firstItem="klk-9h-YUV" firstAttribute="top" secondItem="dNK-ya-xIM" secondAttribute="bottom" constant="8" id="NeJ-uT-KJq"/>
+                            <constraint firstItem="dNK-ya-xIM" firstAttribute="width" secondItem="jXN-sJ-o50" secondAttribute="width" id="ZI9-Dq-kKz"/>
+                            <constraint firstItem="dNK-ya-xIM" firstAttribute="centerX" secondItem="jXN-sJ-o50" secondAttribute="centerX" id="gA0-T7-eBV"/>
+                            <constraint firstItem="dNK-ya-xIM" firstAttribute="centerY" secondItem="jXN-sJ-o50" secondAttribute="centerY" id="hj7-Z9-ibk"/>
+                            <constraint firstItem="klk-9h-YUV" firstAttribute="centerX" secondItem="dNK-ya-xIM" secondAttribute="centerX" id="hyT-Fi-Wuq"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hj7-Z9-ibk"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="numberTextField" destination="dNK-ya-xIM" id="CNW-F8-sjX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fEn-Hw-wvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="65.5" y="742.5"/>
+        </scene>
         <!--Play View Controller-->
         <scene sceneID="PoG-C0-gKo">
             <objects>
@@ -149,6 +198,7 @@
                     <connections>
                         <outlet property="background" destination="bwi-bv-YVk" id="ZN1-x9-hv5"/>
                         <outlet property="bird" destination="YgQ-kU-V7a" id="UJt-6t-Cpd"/>
+                        <outlet property="scoreViewRootView" destination="0zD-rH-MiU" id="5EI-97-4hE"/>
                         <outlet property="tutorialImageView" destination="kfw-zn-0zo" id="f91-ib-i1K"/>
                     </connections>
                 </viewController>

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1853A51E1BFA18C400BDFD8B /* Pipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1853A51D1BFA18C400BDFD8B /* Pipe.swift */; };
+		1888AFE31BFAECD800DDEF0B /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1888AFE21BFAECD800DDEF0B /* ScoreView.swift */; };
+		1888AFE51BFAFA0D00DDEF0B /* ScoreViewTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1888AFE41BFAFA0D00DDEF0B /* ScoreViewTestViewController.swift */; };
 		18A346B61BF9862B003AF5A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A346B51BF9862B003AF5A3 /* AppDelegate.swift */; };
 		18A346BB1BF9862B003AF5A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A346B91BF9862B003AF5A3 /* Main.storyboard */; };
 		18A346BE1BF9862B003AF5A3 /* FlappyBird.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18A346BC1BF9862B003AF5A3 /* FlappyBird.xcdatamodeld */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		1853A51D1BFA18C400BDFD8B /* Pipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pipe.swift; sourceTree = "<group>"; };
 		1888AFE11BFACB9A00DDEF0B /* randomTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = randomTest.playground; sourceTree = "<group>"; };
+		1888AFE21BFAECD800DDEF0B /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		1888AFE41BFAFA0D00DDEF0B /* ScoreViewTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewTestViewController.swift; sourceTree = "<group>"; };
 		18A346B21BF9862B003AF5A3 /* FlappyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlappyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A346B51BF9862B003AF5A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18A346BA1BF9862B003AF5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 				18A346E01BF9A341003AF5A3 /* AutoScrollingBackground.swift */,
 				1853A51D1BFA18C400BDFD8B /* Pipe.swift */,
 				18A346D81BF989B3003AF5A3 /* FlappyButton.swift */,
+				1888AFE21BFAECD800DDEF0B /* ScoreView.swift */,
+				1888AFE41BFAFA0D00DDEF0B /* ScoreViewTestViewController.swift */,
 				18A346B91BF9862B003AF5A3 /* Main.storyboard */,
 				18A346BF1BF9862B003AF5A3 /* Assets.xcassets */,
 				18A346C11BF9862B003AF5A3 /* LaunchScreen.storyboard */,
@@ -230,7 +236,9 @@
 				18A346E51BF9C25A003AF5A3 /* BirdBehavior.swift in Sources */,
 				1853A51E1BFA18C400BDFD8B /* Pipe.swift in Sources */,
 				18A346DF1BF99935003AF5A3 /* PlayViewController.swift in Sources */,
+				1888AFE51BFAFA0D00DDEF0B /* ScoreViewTestViewController.swift in Sources */,
 				18A346DB1BF98C43003AF5A3 /* MainViewController.swift in Sources */,
+				1888AFE31BFAECD800DDEF0B /* ScoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

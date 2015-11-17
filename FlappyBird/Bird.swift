@@ -145,13 +145,11 @@ class Bird: UIView {
     func die() {
         var newFrame = self.frame
         newFrame.origin.y = dieY! - newFrame.height / 2
-        UIView.animateWithDuration(0.1, animations: {
+        self.end()
+        UIView.animateWithDuration(0.25, animations: {
             self.frame = newFrame
             self.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(0.5 * M_PI))
-            }) {
-                complete in
-                self.end()
-        }
+            })
     }
     
     func end() {
