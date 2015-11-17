@@ -158,11 +158,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     func scoreUp() {
         score++
         scoreView!.newScore(score)
-        pointUp()
-    }
-    
-    func pointUp() {
-        AudioPlayer.getInstance().play(.Point)
+        SoundPlayer.playSound("point.wav")
     }
     
     func birdDie() {
