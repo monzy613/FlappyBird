@@ -22,6 +22,7 @@ class MainViewController: UIViewController {
     
     @IBAction func play(sender: UIButton) {
         print("button pressed")
+        AudioPlayer.getInstance().play(.Scroll)
         performSegueWithIdentifier("PlaySegue", sender: sender)
     }
     

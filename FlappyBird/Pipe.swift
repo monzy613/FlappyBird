@@ -72,14 +72,14 @@ class Pipe: UIView {
     }
     
     func animate() {
-        animateTimer = NSTimer.scheduledTimerWithTimeInterval(0.02, target: self, selector: "move", userInfo: nil, repeats: true)
+        animateTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "move", userInfo: nil, repeats: true)
         checkInSuperViewTimer = NSTimer.scheduledTimerWithTimeInterval(0.02, target: self, selector: "checkInSuperView", userInfo: nil, repeats: true)
         checkCollisionTimer = NSTimer.scheduledTimerWithTimeInterval(0.0001, target: self, selector: "checkCollision", userInfo: nil, repeats: true)
     }
     
     func move() {
         var newFrame = self.frame
-        newFrame.origin.x -= 2
+        newFrame.origin.x -= 1
         self.frame = newFrame
     }
     
@@ -104,6 +104,7 @@ class Pipe: UIView {
                         stop()
                         print("bird die[pipe]")
                     }
+                    break
                 }
             }
         }

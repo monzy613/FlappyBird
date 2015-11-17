@@ -24,10 +24,11 @@ class Bird: UIView {
     let birdBehavior = BirdBehavior()
     var downTimer: NSTimer?
     var animateTimer: NSTimer?
-    var deathTimer: NSTimer?
+    var groundTimer: NSTimer?
     var dieY: CGFloat?
-    
     var originFrame: CGRect?
+    
+    var isDead = false
     
     func configureFlyImage(image1: String, image2: String, image3: String, dieY: CGFloat, startPoint: CGPoint) {
         imageView = UIImageView()
@@ -51,18 +52,6 @@ class Bird: UIView {
         }
     }
     
-    func restart() {
-        birdBehavior.addGravityToItem(self)
-        self.frame = originFrame!
-        self.imageView?.transform = CGAffineTransformMakeRotation(0)
-        print("y: \(self.frame.origin.y), dieY: \(dieY!)")
-        print("originY: \(originFrame?.origin.y)")
-        image = flyImage1
-        currentImage = 1
-        enableDownTimer()
-        startDieObserver()
-        animate()
-    }
     
     func animate() {
         animateTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "changeImage", userInfo: nil, repeats: true)
@@ -72,7 +61,27 @@ class Bird: UIView {
         birdBehavior.addGravityToItem(self)
         rootViewController.animator.addBehavior(birdBehavior)
         enableDownTimer()
-        startDieObserver()
+        startObservers()
+    }
+
+    func restart() {
+        birdBehavior.addGravityToItem(self)
+        self.frame = originFrame!
+        self.imageView?.transform = CGAffineTransformMakeRotation(0)
+        print("y: \(self.frame.origin.y), dieY: \(dieY!)")
+        print("originY: \(originFrame?.origin.y)")
+        image = flyImage1
+        currentImage = 1
+        enableDownTimer()
+        startObservers()
+        animate()
+    }
+    
+    func kill() {
+        self.isDead = true
+        animateTimer?.invalidate()
+        birdBehavior.addGravityToItem(self)
+        self.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(0.5 * M_PI))
     }
     
     func enableDownTimer() {
@@ -81,14 +90,20 @@ class Bird: UIView {
         downTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "startTimer", userInfo: nil, repeats: true)
     }
     
-    func startDieObserver() {
-        deathTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "observeDeath", userInfo: nil, repeats: true)
+    func startObservers() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "kill", name: "BirdDieNotification", object: nil)
+        groundTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "observeGround", userInfo: nil, repeats: true)
     }
     
-    func observeDeath() {
+    func observeGround() {
         if (self.frame.origin.y + self.frame.height) >= dieY {
             birdBehavior.removeGravity(self)
-            NSNotificationCenter.defaultCenter().postNotificationName("BirdDieNotification", object: nil, userInfo: nil)
+            if isDead == false {
+                NSNotificationCenter.defaultCenter().postNotificationName("BirdDieNotification", object: nil, userInfo: nil)
+            } else {
+                print("already dead")
+            }
+            intoTheGround()
         }
     }
     
@@ -118,7 +133,7 @@ class Bird: UIView {
     
     
     func up(byTimes: CGFloat = 0.5) {
-        if animateTimer == nil {
+        if animateTimer == nil || isDead == true {
             return
         }
         
@@ -133,7 +148,7 @@ class Bird: UIView {
     
     
     func down() {
-        if animateTimer == nil {
+        if animateTimer == nil || isDead == true {
             return
         }
         birdBehavior.addGravityToItem(self)
@@ -142,20 +157,23 @@ class Bird: UIView {
         })
     }
     
-    func die() {
+    func intoTheGround() {
         var newFrame = self.frame
         newFrame.origin.y = dieY! - newFrame.height / 2
-        self.end()
-        UIView.animateWithDuration(0.25, animations: {
+        UIView.animateWithDuration(0.1, animations: {
             self.frame = newFrame
-            self.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(0.5 * M_PI))
-            })
+            }) {
+                complete in
+                if complete {
+                    self.end()
+                }
+        }
     }
     
     func end() {
         animateTimer?.invalidate()
         downTimer?.invalidate()
-        deathTimer?.invalidate()
+        groundTimer?.invalidate()
         animateTimer = nil
     }
 }

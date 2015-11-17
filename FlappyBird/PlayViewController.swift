@@ -15,6 +15,8 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     var score: Int = 0
     
     var replayButton: FlappyButton?
+    var highScoreBoard: HighScoreBoard?
+    var scoreBoardSize = CGSize.zero
     @IBOutlet var bird: Bird!
     @IBOutlet var background: AutoScrollingBackground!
     @IBOutlet var tutorialImageView: UIImageView!
@@ -22,7 +24,6 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     var tutorialImage: UIImage?
     
     var pipeGeneratorTimer: NSTimer?
-    
     var scoreView: ScoreView?
     
     lazy var animator: UIDynamicAnimator = {
@@ -30,6 +31,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         laziedAnimator.delegate = self
         return laziedAnimator
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +45,8 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         background.configure(UIImage(named: "land")!)
         background.animate()
         initObserver()
-        initReplayButton()
+        initGameOverComponents()
+        scoreBoardSize = (UIImage(named: ImageNames.HighScoreBoard)?.size)!
     }
     
     override func viewWillLayoutSubviews() {
@@ -78,6 +81,9 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         touchesEnded(touches!, withEvent: event)
+        if traitCollection.forceTouchCapability == .Available {
+            bird.down()
+        }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -95,7 +101,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
     }
     
-    func initReplayButton() {
+    func initGameOverComponents() {
         replayButton = FlappyButton(type: .Custom)
         let playButtonImage = UIImage(named: "button_play")!
         replayButton?.setImage(playButtonImage, forState: .Normal)
@@ -122,7 +128,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
         let width = replayButton!.frame.width
         let height = replayButton!.frame.height
-        UIView.animateWithDuration(0.15, animations: {
+        UIView.animateWithDuration(0.35, animations: {
             self.replayButton!.frame = CGRect(x: self.background.frame.midX - width / 2, y: self.background.frame.origin.y - height + 8, width: width, height: height)
         })
     }
@@ -137,6 +143,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         let pipe = Pipe()
         view.addSubview(pipe)
         view.bringSubviewToFront(background)
+        view.bringSubviewToFront(bird)
         view.bringSubviewToFront(replayButton!)
         view.bringSubviewToFront(scoreViewRootView)
         pipe.configure(background.frame.height, startX: self.view.frame.width, birdSize: 48, downPipeImage: UIImage(named: "pipe_down")!,
@@ -151,15 +158,46 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     func scoreUp() {
         score++
         scoreView!.newScore(score)
-        print("score: \(score)")
+        pointUp()
+    }
+    
+    func pointUp() {
+        AudioPlayer.getInstance().play(.Point)
     }
     
     func birdDie() {
-        print("bird die")
+        print("bird die[player view]")
+        AudioPlayer.getInstance().play(.Hit)
         pipeGeneratorTimer?.invalidate()
         background.stop()
-        bird.die()
-        showReplayButton()
+        showHighScoreBoard()
+    }
+    
+    func showHighScoreBoard() {
+        let currentScore = self.score
+        let maxScore = SaveData.loadMaxScore()
+        if highScoreBoard != nil {
+            highScoreBoard?.removeFromSuperview()
+            highScoreBoard = nil
+        }
+        highScoreBoard = HighScoreBoard(_currentScore: currentScore, _maxScore: maxScore, centerPoint: CGPoint(x: self.view.center.x, y: -scoreBoardSize.height))
+        self.view.addSubview(highScoreBoard!)
+        var newFrame = self.highScoreBoard?.frame
+        newFrame?.origin.x = self.view.center.x - (newFrame?.width)! / 2
+        newFrame?.origin.y = self.view.center.y - (newFrame?.height)! / 2
+        UIView.animateWithDuration(0.7, animations: {
+            self.highScoreBoard?.frame = newFrame!
+            }){
+                complete in
+                //show button
+                AudioPlayer.getInstance().play(.Scroll)
+                self.showReplayButton()
+        }
+    }
+    
+    func dismissScoreBoard() {
+        highScoreBoard?.removeFromSuperview()
+        highScoreBoard = nil
     }
 
     func replay() {
@@ -168,7 +206,8 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         initScoreView()
         removePipes()
         replayButton?.removeFromSuperview()
-        initReplayButton()
+        initGameOverComponents()
+        dismissScoreBoard()
         bird.removeFromSuperview()
         bird = nil
         bird = Bird()
@@ -181,6 +220,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         if tutorialImageFrame != nil {
             tutorialImageView.frame = tutorialImageFrame!
         }
+        self.animator.removeAllBehaviors()
         self.view.addSubview(tutorialImageView)
     }
     

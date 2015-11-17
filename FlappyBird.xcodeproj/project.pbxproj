@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180417D61BFB63EC00928FEE /* HighScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180417D51BFB63EC00928FEE /* HighScoreBoard.swift */; };
+		180417D81BFB6CD400928FEE /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180417D71BFB6CD400928FEE /* AudioPlayer.swift */; };
+		180417DF1BFB702600928FEE /* die.wav in Resources */ = {isa = PBXBuildFile; fileRef = 180417DA1BFB702600928FEE /* die.wav */; };
+		180417E01BFB702600928FEE /* fly.wav in Resources */ = {isa = PBXBuildFile; fileRef = 180417DB1BFB702600928FEE /* fly.wav */; };
+		180417E11BFB702600928FEE /* hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 180417DC1BFB702600928FEE /* hit.wav */; };
+		180417E21BFB702600928FEE /* point.wav in Resources */ = {isa = PBXBuildFile; fileRef = 180417DD1BFB702600928FEE /* point.wav */; };
+		180417E31BFB702600928FEE /* scroll.wav in Resources */ = {isa = PBXBuildFile; fileRef = 180417DE1BFB702600928FEE /* scroll.wav */; };
 		1853A51E1BFA18C400BDFD8B /* Pipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1853A51D1BFA18C400BDFD8B /* Pipe.swift */; };
 		1888AFE31BFAECD800DDEF0B /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1888AFE21BFAECD800DDEF0B /* ScoreView.swift */; };
 		1888AFE51BFAFA0D00DDEF0B /* ScoreViewTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1888AFE41BFAFA0D00DDEF0B /* ScoreViewTestViewController.swift */; };
@@ -22,6 +29,7 @@
 		18A346DF1BF99935003AF5A3 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A346DE1BF99935003AF5A3 /* PlayViewController.swift */; };
 		18A346E11BF9A341003AF5A3 /* AutoScrollingBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A346E01BF9A341003AF5A3 /* AutoScrollingBackground.swift */; };
 		18A346E51BF9C25A003AF5A3 /* BirdBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A346E41BF9C25A003AF5A3 /* BirdBehavior.swift */; };
+		18F9060F1BFB162C00DB1D1D /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9060E1BFB162C00DB1D1D /* SaveData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +43,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180417D51BFB63EC00928FEE /* HighScoreBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreBoard.swift; sourceTree = "<group>"; };
+		180417D71BFB6CD400928FEE /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		180417DA1BFB702600928FEE /* die.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = die.wav; sourceTree = "<group>"; };
+		180417DB1BFB702600928FEE /* fly.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fly.wav; sourceTree = "<group>"; };
+		180417DC1BFB702600928FEE /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit.wav; sourceTree = "<group>"; };
+		180417DD1BFB702600928FEE /* point.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = point.wav; sourceTree = "<group>"; };
+		180417DE1BFB702600928FEE /* scroll.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = scroll.wav; sourceTree = "<group>"; };
 		1853A51D1BFA18C400BDFD8B /* Pipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pipe.swift; sourceTree = "<group>"; };
 		1888AFE11BFACB9A00DDEF0B /* randomTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = randomTest.playground; sourceTree = "<group>"; };
 		1888AFE21BFAECD800DDEF0B /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
@@ -55,6 +70,7 @@
 		18A346DE1BF99935003AF5A3 /* PlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		18A346E01BF9A341003AF5A3 /* AutoScrollingBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoScrollingBackground.swift; sourceTree = "<group>"; };
 		18A346E41BF9C25A003AF5A3 /* BirdBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirdBehavior.swift; sourceTree = "<group>"; };
+		18F9060E1BFB162C00DB1D1D /* SaveData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +91,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180417D91BFB702600928FEE /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				180417DA1BFB702600928FEE /* die.wav */,
+				180417DB1BFB702600928FEE /* fly.wav */,
+				180417DC1BFB702600928FEE /* hit.wav */,
+				180417DD1BFB702600928FEE /* point.wav */,
+				180417DE1BFB702600928FEE /* scroll.wav */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 		18A346A91BF9862B003AF5A3 = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				18A346B51BF9862B003AF5A3 /* AppDelegate.swift */,
+				18F9060E1BFB162C00DB1D1D /* SaveData.swift */,
+				180417D71BFB6CD400928FEE /* AudioPlayer.swift */,
 				18A346DA1BF98C43003AF5A3 /* MainViewController.swift */,
 				18A346DE1BF99935003AF5A3 /* PlayViewController.swift */,
 				18A346E41BF9C25A003AF5A3 /* BirdBehavior.swift */,
@@ -106,9 +136,11 @@
 				1853A51D1BFA18C400BDFD8B /* Pipe.swift */,
 				18A346D81BF989B3003AF5A3 /* FlappyButton.swift */,
 				1888AFE21BFAECD800DDEF0B /* ScoreView.swift */,
+				180417D51BFB63EC00928FEE /* HighScoreBoard.swift */,
 				1888AFE41BFAFA0D00DDEF0B /* ScoreViewTestViewController.swift */,
 				18A346B91BF9862B003AF5A3 /* Main.storyboard */,
 				18A346BF1BF9862B003AF5A3 /* Assets.xcassets */,
+				180417D91BFB702600928FEE /* sounds */,
 				18A346C11BF9862B003AF5A3 /* LaunchScreen.storyboard */,
 				18A346C41BF9862B003AF5A3 /* Info.plist */,
 				18A346BC1BF9862B003AF5A3 /* FlappyBird.xcdatamodeld */,
@@ -208,9 +240,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180417E11BFB702600928FEE /* hit.wav in Resources */,
 				18A346C31BF9862B003AF5A3 /* LaunchScreen.storyboard in Resources */,
+				180417DF1BFB702600928FEE /* die.wav in Resources */,
+				180417E21BFB702600928FEE /* point.wav in Resources */,
 				18A346C01BF9862B003AF5A3 /* Assets.xcassets in Resources */,
+				180417E31BFB702600928FEE /* scroll.wav in Resources */,
 				18A346BB1BF9862B003AF5A3 /* Main.storyboard in Resources */,
+				180417E01BFB702600928FEE /* fly.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +267,8 @@
 			files = (
 				18A346D91BF989B3003AF5A3 /* FlappyButton.swift in Sources */,
 				18A346DD1BF9964F003AF5A3 /* Bird.swift in Sources */,
+				180417D61BFB63EC00928FEE /* HighScoreBoard.swift in Sources */,
+				18F9060F1BFB162C00DB1D1D /* SaveData.swift in Sources */,
 				18A346E11BF9A341003AF5A3 /* AutoScrollingBackground.swift in Sources */,
 				18A346B61BF9862B003AF5A3 /* AppDelegate.swift in Sources */,
 				18A346BE1BF9862B003AF5A3 /* FlappyBird.xcdatamodeld in Sources */,
@@ -239,6 +278,7 @@
 				1888AFE51BFAFA0D00DDEF0B /* ScoreViewTestViewController.swift in Sources */,
 				18A346DB1BF98C43003AF5A3 /* MainViewController.swift in Sources */,
 				1888AFE31BFAECD800DDEF0B /* ScoreView.swift in Sources */,
+				180417D81BFB6CD400928FEE /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

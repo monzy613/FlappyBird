@@ -97,8 +97,29 @@
                                     <action selector="changeScore:" destination="2ja-T7-Rcc" eventType="touchUpInside" id="kjg-om-YHi"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUb-As-6B9">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="score_panel" translatesAutoresizingMaskIntoConstraints="NO" id="yWP-Iy-peR">
+                                        <rect key="frame" x="-6" y="2" width="238" height="126"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" image="font_057" translatesAutoresizingMaskIntoConstraints="NO" id="ukG-H5-Ncj">
+                                        <rect key="frame" x="185" y="34" width="20" height="26"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="medals_2" translatesAutoresizingMaskIntoConstraints="NO" id="azu-Rl-byr">
+                                        <rect key="frame" x="26" y="46" width="44" height="44"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" image="font_057" translatesAutoresizingMaskIntoConstraints="NO" id="C6t-sW-oeX">
+                                        <rect key="frame" x="185" y="78" width="20" height="26"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="new" translatesAutoresizingMaskIntoConstraints="NO" id="tyr-pm-PRh">
+                                        <rect key="frame" x="135" y="61" width="32" height="14"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hZv-FI-TlU" firstAttribute="top" secondItem="klk-9h-YUV" secondAttribute="bottom" constant="8" id="1Tw-jb-uei"/>
                             <constraint firstItem="klk-9h-YUV" firstAttribute="top" secondItem="dNK-ya-xIM" secondAttribute="bottom" constant="8" id="NeJ-uT-KJq"/>
@@ -211,6 +232,10 @@
         <image name="bg_day" width="288" height="512"/>
         <image name="bg_night" width="288" height="512"/>
         <image name="button_play" width="116" height="70"/>
+        <image name="font_057" width="24" height="44"/>
+        <image name="medals_2" width="44" height="44"/>
+        <image name="new" width="32" height="14"/>
+        <image name="score_panel" width="238" height="126"/>
         <image name="tutorial" width="114" height="98"/>
     </resources>
 </document>

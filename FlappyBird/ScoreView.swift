@@ -21,7 +21,7 @@ class ScoreView: UIView {
     }
     var space: CGFloat {
         get {
-            return width / 6
+            return width / 10
         }
     }
     
@@ -39,6 +39,14 @@ class ScoreView: UIView {
         imageViews.append(imgView)
         self.addSubview(imgView)
         self.frame = CGRect(x: centerPoint.x - width / 2, y: centerPoint.y - height / 2, width: width, height: height)
+    }
+    
+    convenience init(withScore: Int, width: CGFloat, rightUpPoint: CGPoint) {
+        self.init(width: width, centerPoint: rightUpPoint)
+        newScore(withScore)
+        let viewWidth = self.frame.width
+        let viewHeight = self.frame.height
+        self.frame = CGRect(x: rightUpPoint.x - viewWidth, y: rightUpPoint.y, width: viewWidth, height: viewHeight)
     }
     
     //space 1

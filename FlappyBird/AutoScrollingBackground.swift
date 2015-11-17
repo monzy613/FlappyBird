@@ -34,13 +34,13 @@ class AutoScrollingBackground: UIView {
             imgView.frame = newFrame
         }
         animateTimer?.invalidate()
-        animateTimer = NSTimer.scheduledTimerWithTimeInterval(0.02, target: self, selector: "move", userInfo: nil, repeats: true)
+        animateTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "move", userInfo: nil, repeats: true)
     }
     
     func move() {
         for imgView in imageViews {
             var newFrame = imgView.frame
-            newFrame.origin.x -= 2
+            newFrame.origin.x -= 1
             imgView.frame = newFrame
             if (imgView.frame.origin.x + imgView.frame.width) <= 0 {
                 imgView.frame = CGRect(x: imgView.frame.origin.x + imgView.frame.width * 2, y: 0, width: imgView.frame.width, height: imgView.frame.height)

@@ -10,6 +10,8 @@ import UIKit
 
 class ScoreViewTestViewController: UIViewController {
     var scoreView: ScoreView?
+    var highScoreBoard: HighScoreBoard?
+    
 
     @IBOutlet var numberTextField: UITextField!
     override func viewDidLoad() {
@@ -17,7 +19,10 @@ class ScoreViewTestViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         scoreView = ScoreView(width: self.view.frame.width / 10, centerPoint: self.view.center)
-        self.view.addSubview(scoreView!)
+        //self.view.addSubview(scoreView!)
+        
+        highScoreBoard = HighScoreBoard(_currentScore: 1, _maxScore: 7, centerPoint: self.view.center)
+        self.view.addSubview(highScoreBoard!)
     }
 
     override func didReceiveMemoryWarning() {
