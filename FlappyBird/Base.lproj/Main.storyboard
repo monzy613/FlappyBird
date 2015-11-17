@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9527.1" systemVersion="15C40a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9525.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="FlappyBird" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_night" translatesAutoresizingMaskIntoConstraints="NO" id="ZAV-Br-9tF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQH-LZ-eWy">
+                                <rect key="frame" x="0.0" y="608" width="375" height="59"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dw-gH-UIb" customClass="AutoScrollingBackground" customModule="FlappyBird" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="542" width="375" height="125"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3dw-gH-UIb" secondAttribute="height" multiplier="3:1" id="nd5-7K-lAw"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KID-cM-hwU" customClass="FlappyButton" customModule="FlappyBird" customModuleProvider="target">
+                                <rect key="frame" x="130" y="472" width="116" height="70"/>
+                                <state key="normal" image="button_play"/>
+                                <state key="highlighted" image="button_play"/>
+                                <connections>
+                                    <action selector="play:" destination="BYZ-38-t0r" eventType="touchDown" id="f9h-na-t00"/>
+                                </connections>
+                            </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="LK0-xl-KlY">
+                                <rect key="frame" x="131" y="366" width="114" height="98"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KID-cM-hwU" secondAttribute="bottom" constant="60" id="P92-LP-MUa"/>
+                            <constraint firstItem="LK0-xl-KlY" firstAttribute="centerX" secondItem="KID-cM-hwU" secondAttribute="centerX" id="PhZ-K7-36x"/>
+                            <constraint firstItem="3dw-gH-UIb" firstAttribute="top" secondItem="KID-cM-hwU" secondAttribute="bottom" id="TxR-OV-bBy"/>
+                            <constraint firstItem="KID-cM-hwU" firstAttribute="top" secondItem="LK0-xl-KlY" secondAttribute="bottom" constant="8" id="YFT-ZG-5pX"/>
+                            <constraint firstItem="3dw-gH-UIb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YPh-ab-SBA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3dw-gH-UIb" secondAttribute="bottom" id="c3T-I8-30f"/>
+                            <constraint firstItem="KID-cM-hwU" firstAttribute="centerX" secondItem="3dw-gH-UIb" secondAttribute="centerX" id="ecb-Da-x43"/>
+                            <constraint firstItem="3dw-gH-UIb" firstAttribute="top" secondItem="KID-cM-hwU" secondAttribute="bottom" id="mbc-it-Ere"/>
+                            <constraint firstAttribute="trailing" secondItem="3dw-gH-UIb" secondAttribute="trailing" id="srB-T6-p72"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mbc-it-Ere"/>
+                                <exclude reference="P92-LP-MUa"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="background" destination="3dw-gH-UIb" id="FoC-16-N50"/>
+                        <segue destination="mmg-CN-iV6" kind="presentation" identifier="PlaySegue" modalTransitionStyle="crossDissolve" id="43l-hJ-TkQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="65.5" y="-28.5"/>
+        </scene>
+        <!--Play View Controller-->
+        <scene sceneID="PoG-C0-gKo">
+            <objects>
+                <viewController id="mmg-CN-iV6" customClass="PlayViewController" customModule="FlappyBird" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tpr-E4-Lqy"/>
+                        <viewControllerLayoutGuide type="bottom" id="wgH-Uw-pwo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="m4Q-zg-KYP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_day" translatesAutoresizingMaskIntoConstraints="NO" id="Rhk-NB-pYw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YgQ-kU-V7a" customClass="Bird" customModule="FlappyBird" customModuleProvider="target">
+                                <rect key="frame" x="104" y="310" width="48" height="48"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YgQ-kU-V7a" secondAttribute="height" multiplier="1:1" id="gUW-rw-sex"/>
+                                    <constraint firstAttribute="width" constant="48" id="zQC-mx-ZYc"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="gUW-rw-sex"/>
+                                        <exclude reference="zQC-mx-ZYc"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bwi-bv-YVk" customClass="AutoScrollingBackground" customModule="FlappyBird" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="542" width="375" height="125"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bwi-bv-YVk" secondAttribute="height" multiplier="3:1" id="iog-qK-GMH"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="kfw-zn-0zo">
+                                <rect key="frame" x="130" y="285" width="114" height="98"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zD-rH-MiU">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0zD-rH-MiU" secondAttribute="height" multiplier="3:1" id="w9S-u6-DFD"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wgH-Uw-pwo" firstAttribute="top" secondItem="bwi-bv-YVk" secondAttribute="bottom" id="3EK-we-EG0"/>
+                            <constraint firstAttribute="trailing" secondItem="bwi-bv-YVk" secondAttribute="trailing" id="3dL-eV-LkV"/>
+                            <constraint firstItem="Rhk-NB-pYw" firstAttribute="centerY" secondItem="m4Q-zg-KYP" secondAttribute="centerY" id="4Sy-n8-brd"/>
+                            <constraint firstItem="YgQ-kU-V7a" firstAttribute="centerX" secondItem="Rhk-NB-pYw" secondAttribute="centerX" constant="-60" id="6j2-AZ-pU7"/>
+                            <constraint firstItem="Rhk-NB-pYw" firstAttribute="height" secondItem="m4Q-zg-KYP" secondAttribute="height" id="6oT-Pp-9bZ"/>
+                            <constraint firstItem="0zD-rH-MiU" firstAttribute="top" secondItem="m4Q-zg-KYP" secondAttribute="top" id="7Ee-un-POc"/>
+                            <constraint firstItem="Rhk-NB-pYw" firstAttribute="centerX" secondItem="m4Q-zg-KYP" secondAttribute="centerX" id="9r2-bf-sXb"/>
+                            <constraint firstItem="Rhk-NB-pYw" firstAttribute="width" secondItem="m4Q-zg-KYP" secondAttribute="width" id="LIE-ix-irP"/>
+                            <constraint firstItem="0zD-rH-MiU" firstAttribute="leading" secondItem="m4Q-zg-KYP" secondAttribute="leading" id="MXg-Wo-pFE"/>
+                            <constraint firstItem="bwi-bv-YVk" firstAttribute="leading" secondItem="m4Q-zg-KYP" secondAttribute="leading" id="Sag-os-cvE"/>
+                            <constraint firstAttribute="trailing" secondItem="0zD-rH-MiU" secondAttribute="trailing" id="gAG-Hn-5v4"/>
+                            <constraint firstItem="kfw-zn-0zo" firstAttribute="centerY" secondItem="Rhk-NB-pYw" secondAttribute="centerY" id="pSC-C4-Tad"/>
+                            <constraint firstItem="kfw-zn-0zo" firstAttribute="centerX" secondItem="Rhk-NB-pYw" secondAttribute="centerX" id="t5N-c2-EgX"/>
+                            <constraint firstItem="YgQ-kU-V7a" firstAttribute="centerY" secondItem="Rhk-NB-pYw" secondAttribute="centerY" id="wGg-af-pjj"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6j2-AZ-pU7"/>
+                                <exclude reference="wGg-af-pjj"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="iPy-HW-CGh"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="background" destination="bwi-bv-YVk" id="ZN1-x9-hv5"/>
+                        <outlet property="bird" destination="YgQ-kU-V7a" id="UJt-6t-Cpd"/>
+                        <outlet property="tutorialImageView" destination="kfw-zn-0zo" id="f91-ib-i1K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OUh-DE-Nfb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="544.5" y="-28.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bg_day" width="288" height="512"/>
+        <image name="bg_night" width="288" height="512"/>
+        <image name="button_play" width="116" height="70"/>
+        <image name="tutorial" width="114" height="98"/>
+    </resources>
+</document>
