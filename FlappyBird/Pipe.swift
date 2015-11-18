@@ -91,7 +91,9 @@ class Pipe: UIView {
     
     func checkInSuperView() {
         if (self.frame.origin.x + self.frame.width) < 0 {
+            NSNotificationCenter.defaultCenter().postNotificationName("NewPipe", object: nil)
             self.removeFromSuperview()
+            self.stop()
         }
     }
     

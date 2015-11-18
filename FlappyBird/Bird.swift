@@ -131,12 +131,16 @@ class Bird: UIView {
         }
     }
     
+    var flyFlag = false
     
     func up(byTimes: CGFloat = 0.5) {
         if animateTimer == nil || isDead == true {
             return
         }
-        
+        if flyFlag == false {
+            AudioPlayer.fly()
+            flyFlag = true
+        }
         downTimer?.invalidate()
         birdBehavior.removeGravity(self)
         
@@ -155,6 +159,7 @@ class Bird: UIView {
         if animateTimer == nil || isDead == true {
             return
         }
+        flyFlag = false
         birdBehavior.addGravityToItem(self)
         UIView.animateWithDuration(0.1, animations: {
             self.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(0.25 * M_PI))

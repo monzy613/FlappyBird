@@ -71,20 +71,14 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         bird.down()
     }
     
-    var flyFlag = false
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if traitCollection.forceTouchCapability == .Available {
             if let touch = touches.first {
                 let forceTimes = touch.force / touch.maximumPossibleForce
                 if forceTimes > 0.3 {
-                    if flyFlag == false {
-                        AudioPlayer.fly()
-                        flyFlag = true
-                    }
                     bird.up(forceTimes / 5)
                 } else {
-                    flyFlag = false
                     bird.down()
                 }
             }
@@ -146,7 +140,8 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     }
     
     func initPipe() {
-        pipeGeneratorTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "makePipe", userInfo: nil, repeats: true)
+        //pipeGeneratorTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "makePipe", userInfo: nil, repeats: true)
+        makeTwoPipes()
     }
     
     func makePipe() {
@@ -162,15 +157,29 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
             upPipeImage: UIImage(named: "pipe_up")!)
     }
     
+    func makeTwoPipes() {
+        for i in 0...1 {
+            let pipe = Pipe()
+            view.addSubview(pipe)
+            view.bringSubviewToFront(background)
+            view.bringSubviewToFront(bird)
+            view.bringSubviewToFront(replayButton!)
+            view.bringSubviewToFront(scoreViewRootView)
+            pipe.configure(background.frame.height, startX: self.view.frame.width + (self.view.frame.width * CGFloat(i)) / 2, birdSize: 48, downPipeImage: UIImage(named: "pipe_down")!,
+                upPipeImage: UIImage(named: "pipe_up")!)
+        }
+        
+    }
+    
     func initObserver() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "birdDie", name: "BirdDieNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "scoreUp", name: "Score", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "makePipe", name: "NewPipe", object: nil)
     }
     
     func scoreUp() {
         score++
         scoreView!.newScore(score)
-        //SoundPlayer.playSound("point.wav")
         AudioPlayer.play(.Point)
     }
     
