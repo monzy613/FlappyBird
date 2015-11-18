@@ -22,7 +22,6 @@ class Bird: UIView {
     var currentImage: Int = 1
     var timer: CGFloat = 0
     let birdBehavior = BirdBehavior()
-    var downTimer: NSTimer?
     var animateTimer: NSTimer?
     var groundTimer: NSTimer?
     var dieY: CGFloat?
@@ -86,7 +85,6 @@ class Bird: UIView {
     
     func enableDownTimer() {
         timer = 0
-        downTimer = nil
     }
     
     func startObservers() {
@@ -140,7 +138,7 @@ class Bird: UIView {
             AudioPlayer.fly()
             flyFlag = true
         }
-        downTimer?.invalidate()
+
         birdBehavior.removeGravity(self)
         
         UIView.animateWithDuration(0.1, animations: {
@@ -150,19 +148,32 @@ class Bird: UIView {
     }
     
     
+    var isFlyAnimComplete = true
+    var downTimer: NSTimer?
+    
     func upWithout3DTouch() {
         if animateTimer == nil || isDead == true {
             return
         }
         AudioPlayer.fly()
         birdBehavior.removeGravity(self)
-        self.layer.removeAllAnimations()
+        self.downTimer?.invalidate()
+        if isFlyAnimComplete == false {
+            return
+        }
         UIView.animateWithDuration(0.15, animations: {
+            self.isFlyAnimComplete = false
             self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y - self.frame.height * 2 / 3, width: self.frame.width, height: self.frame.height)
             self.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(-0.25 * M_PI))
         }) {
             complete in
-            self.down()
+            if complete == false {
+                print("not complete")
+                self.downTimer?.invalidate()
+            } else {
+                self.isFlyAnimComplete = true
+                self.downTimer = NSTimer.scheduledTimerWithTimeInterval(0.15, target: self, selector: "down", userInfo: nil, repeats: false)
+            }
         }
     }
     
@@ -200,7 +211,6 @@ class Bird: UIView {
     
     func end() {
         animateTimer?.invalidate()
-        downTimer?.invalidate()
         groundTimer?.invalidate()
         animateTimer = nil
     }

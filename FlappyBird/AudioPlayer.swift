@@ -29,15 +29,16 @@ class AudioPlayer: NSObject {
     
     var wavDic = [String: NSURL]()
     private var player: AVAudioPlayer?
-    private var flyPlayer: AVAudioPlayer?
+    private var flyPlayers = [AVAudioPlayer]()
     
     private override init() {
         super.init()
         wavDic = FileOperator.getWavs()
-        do {
-            self.flyPlayer = try AVAudioPlayer(contentsOfURL: wavDic[Wavs.Fly.rawValue]!)
-            self.flyPlayer?.numberOfLoops = 0
-        } catch {
+        for _ in 0...7 {
+            do {
+                let tmpFly = try AVAudioPlayer(contentsOfURL: wavDic[Wavs.Fly.rawValue]!)
+                flyPlayers.append(tmpFly)
+            } catch {print("error: \(error)")}
         }
     }
     
@@ -56,8 +57,13 @@ class AudioPlayer: NSObject {
     }
     
     static func fly() {
-        getInstance().flyPlayer?.stop()
-        getInstance().flyPlayer?.play()
+        for fp in AudioPlayer.getInstance().flyPlayers {
+            if fp.playing == false {
+                fp.play()
+                return
+            }
+        }
+        print("[noneAvailable]")
     }
     
     static func play(wav: Wavs) {
