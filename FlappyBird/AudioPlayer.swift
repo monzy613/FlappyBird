@@ -56,6 +56,7 @@ class AudioPlayer: NSObject {
     }
     
     static func fly() {
+        getInstance().flyPlayer?.stop()
         getInstance().flyPlayer?.play()
     }
     

@@ -87,7 +87,7 @@ class Bird: UIView {
     func enableDownTimer() {
         timer = 0
         downTimer = nil
-        downTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "startTimer", userInfo: nil, repeats: true)
+//        downTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "startTimer", userInfo: nil, repeats: true)
     }
     
     func startObservers() {
@@ -150,8 +150,21 @@ class Bird: UIView {
         })
     }
     
-    func upWithOut3DTouch() {
-        
+    
+    func upWithout3DTouch() {
+        if animateTimer == nil || isDead == true {
+            return
+        }
+        AudioPlayer.fly()
+        birdBehavior.removeGravity(self)
+        self.layer.removeAllAnimations()
+        UIView.animateWithDuration(0.15, animations: {
+            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y - self.frame.height * 2 / 3, width: self.frame.width, height: self.frame.height)
+            self.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(-0.25 * M_PI))
+        }) {
+            complete in
+            self.down()
+        }
     }
     
     
@@ -161,15 +174,22 @@ class Bird: UIView {
         }
         flyFlag = false
         birdBehavior.addGravityToItem(self)
-        UIView.animateWithDuration(0.1, animations: {
-            self.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(0.25 * M_PI))
+        let animatTimeInterval = Double(1.1 - self.frame.origin.y / self.dieY!)
+        print("----------------------------------------")
+        print("superViewHeight: \((self.superview?.frame.height)!)")
+        print("selfHeight:      \(self.frame.origin.y)")
+        print("dieY:            \(self.dieY!)")
+        print("percent:         \(animatTimeInterval)")
+        print("----------------------------------------")
+        UIView.animateWithDuration(0.6, animations: {
+            self.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(0.5 * M_PI))
         })
     }
     
     func intoTheGround() {
         var newFrame = self.frame
         newFrame.origin.y = dieY! - newFrame.height / 2
-        UIView.animateWithDuration(0.1, animations: {
+        UIView.animateWithDuration(0.05, animations: {
             self.frame = newFrame
             }) {
                 complete in

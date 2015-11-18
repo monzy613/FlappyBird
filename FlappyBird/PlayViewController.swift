@@ -23,6 +23,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     var tutorialImageFrame: CGRect?
     var tutorialImage: UIImage?
     
+    var no3DTouchAutoDownTimer: NSTimer?
     var pipeGeneratorTimer: NSTimer?
     var scoreView: ScoreView?
     
@@ -61,8 +62,9 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
             initPipe()
         } else {
             if traitCollection.forceTouchCapability == .Unavailable {
-                bird.upWithOut3DTouch()
-                NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "noForceTouchDown", userInfo: nil, repeats: false)
+                no3DTouchAutoDownTimer?.invalidate()
+                bird.upWithout3DTouch()
+                //no3DTouchAutoDownTimer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: bird, selector: "down", userInfo: nil, repeats: false)
             }
         }
     }
@@ -144,6 +146,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         makeTwoPipes()
     }
     
+    
     func makePipe() {
         //pipe.configure(spaceStartY: CGFloat) spaceStartY: 20 ~ (window.frame.height - background.frame.height)
         //window.frame.height - (pipeUp.frame.height + backgound.frame.height + spaceHeight) ~ pipeDown.frame.height
@@ -186,9 +189,32 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     func birdDie() {
         print("bird die[player view]")
         AudioPlayer.play(.Hit)
+        shineScreen()
         pipeGeneratorTimer?.invalidate()
         background.stop()
         showHighScoreBoard()
+    }
+    
+    func shineScreen() {
+        let shineView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        shineView.backgroundColor = UIColor.whiteColor()
+        shineView.alpha = 0
+        self.view.addSubview(shineView)
+        UIView.animateWithDuration(0.1, animations: {
+            shineView.alpha = 0.8
+            }){
+                complete in
+                if complete {
+                    UIView.animateWithDuration(0.1, animations: {
+                        shineView.alpha = 0
+                        }) {
+                            complete2 in
+                            if complete2 {
+                                shineView.removeFromSuperview()
+                            }
+                    }
+                }
+        }
     }
     
     func showHighScoreBoard() {
@@ -233,11 +259,8 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         bird.configureFlyImage("bird2_0", image2: "bird2_1", image3: "bird2_2", dieY: background.frame.origin.y, startPoint: CGPoint(x: background.frame.height / 2, y: (self.view.frame.height - background.frame.height) / 2))
         background.animate()
         bird.animate()
-        
         tutorialImageView = UIImageView(image: tutorialImage ?? nil)
-        if tutorialImageFrame != nil {
-            tutorialImageView.frame = tutorialImageFrame!
-        }
+        tutorialImageView.frame = CGRect(x: self.view.center.x - (tutorialImage?.size.width)! / 2, y: self.view.center.y - (tutorialImage?.size.height)! / 2, width: (tutorialImage?.size.width)!, height: (tutorialImage?.size.height)!)
         self.animator.removeAllBehaviors()
         self.view.addSubview(tutorialImageView)
     }

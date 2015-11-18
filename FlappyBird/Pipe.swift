@@ -10,6 +10,8 @@ import UIKit
 
 class Pipe: UIView {
     
+    let SPACE_TIMES_BIRDSIZE: CGFloat = 1.8
+    
     //52 320
     var width: CGFloat?
     var height: CGFloat?
@@ -33,7 +35,7 @@ class Pipe: UIView {
         }
         
         
-        space = birdSize * 1.5
+        space = birdSize * SPACE_TIMES_BIRDSIZE
         width = birdSize
         height = space! + (width! * 320 / 52) * 2
         pipeWidth = width!
@@ -113,7 +115,7 @@ class Pipe: UIView {
     }
     
     func isSafe(birdFrame: CGRect) -> Bool {
-        let deathRadius: CGFloat = 0
+        let deathRadius: CGFloat = 0.2
         if (birdFrame.midX + birdFrame.width * deathRadius) <= self.frame.origin.x {
             return true
         } else if (birdFrame.midX - birdFrame.width * deathRadius) >= (self.frame.origin.x + self.frame.width) {
