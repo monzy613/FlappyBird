@@ -20,6 +20,7 @@ class AutoScrollingBackground: UIView {
         for i in 0...2 {
             let imgView = UIImageView(frame: CGRect(x: CGFloat(i) * width, y: 0, width: width, height: height))
             imgView.image = backgroundImage
+            imgView.contentMode = .ScaleAspectFill
             imageViews.append(imgView)
             self.addSubview(imgView)
         }

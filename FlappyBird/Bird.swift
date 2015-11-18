@@ -146,6 +146,10 @@ class Bird: UIView {
         })
     }
     
+    func upWithOut3DTouch() {
+        
+    }
+    
     
     func down() {
         if animateTimer == nil || isDead == true {

@@ -15,25 +15,17 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_night" translatesAutoresizingMaskIntoConstraints="NO" id="ZAV-Br-9tF">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_night" translatesAutoresizingMaskIntoConstraints="NO" id="ZAV-Br-9tF">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQH-LZ-eWy">
-                                <rect key="frame" x="0.0" y="608" width="375" height="59"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dw-gH-UIb" customClass="AutoScrollingBackground" customModule="FlappyBird" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="542" width="375" height="125"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="3dw-gH-UIb" secondAttribute="height" multiplier="3:1" id="nd5-7K-lAw"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KID-cM-hwU" customClass="FlappyButton" customModule="FlappyBird" customModuleProvider="target">
-                                <rect key="frame" x="130" y="472" width="116" height="70"/>
+                                <rect key="frame" x="149" y="528" width="116" height="70"/>
                                 <state key="normal" image="button_play"/>
                                 <state key="highlighted" image="button_play"/>
                                 <connections>
@@ -41,17 +33,28 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="LK0-xl-KlY">
-                                <rect key="frame" x="131" y="366" width="114" height="98"/>
+                                <rect key="frame" x="150" y="422" width="114" height="98"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dw-gH-UIb" customClass="AutoScrollingBackground" customModule="FlappyBird" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="598" width="414" height="138"/>
+                                <color key="backgroundColor" red="0.83921568627450982" green="0.81960784313725488" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3dw-gH-UIb" secondAttribute="height" multiplier="3:1" id="nd5-7K-lAw"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ZAV-Br-9tF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7Ri-Ed-VVo"/>
+                            <constraint firstItem="ZAV-Br-9tF" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="LGW-dM-dRk"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KID-cM-hwU" secondAttribute="bottom" constant="60" id="P92-LP-MUa"/>
                             <constraint firstItem="LK0-xl-KlY" firstAttribute="centerX" secondItem="KID-cM-hwU" secondAttribute="centerX" id="PhZ-K7-36x"/>
                             <constraint firstItem="3dw-gH-UIb" firstAttribute="top" secondItem="KID-cM-hwU" secondAttribute="bottom" id="TxR-OV-bBy"/>
                             <constraint firstItem="KID-cM-hwU" firstAttribute="top" secondItem="LK0-xl-KlY" secondAttribute="bottom" constant="8" id="YFT-ZG-5pX"/>
                             <constraint firstItem="3dw-gH-UIb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YPh-ab-SBA"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3dw-gH-UIb" secondAttribute="bottom" id="c3T-I8-30f"/>
+                            <constraint firstItem="ZAV-Br-9tF" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="dqC-OV-urp"/>
+                            <constraint firstItem="ZAV-Br-9tF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eLJ-Zk-ReO"/>
                             <constraint firstItem="KID-cM-hwU" firstAttribute="centerX" secondItem="3dw-gH-UIb" secondAttribute="centerX" id="ecb-Da-x43"/>
                             <constraint firstItem="3dw-gH-UIb" firstAttribute="top" secondItem="KID-cM-hwU" secondAttribute="bottom" id="mbc-it-Ere"/>
                             <constraint firstAttribute="trailing" secondItem="3dw-gH-UIb" secondAttribute="trailing" id="srB-T6-p72"/>
@@ -63,7 +66,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="background" destination="3dw-gH-UIb" id="FoC-16-N50"/>
                         <segue destination="mmg-CN-iV6" kind="presentation" identifier="PlaySegue" modalTransitionStyle="crossDissolve" id="43l-hJ-TkQ"/>
@@ -118,6 +121,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="land" translatesAutoresizingMaskIntoConstraints="NO" id="cwH-zI-Vh6">
+                                <rect key="frame" x="33" y="197" width="336" height="112"/>
+                                <color key="backgroundColor" red="0.83921568627450982" green="0.81960784313725488" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -152,11 +159,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wgH-Uw-pwo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="m4Q-zg-KYP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_day" translatesAutoresizingMaskIntoConstraints="NO" id="Rhk-NB-pYw">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YgQ-kU-V7a" customClass="Bird" customModule="FlappyBird" customModuleProvider="target">
                                 <rect key="frame" x="104" y="310" width="48" height="48"/>
@@ -173,17 +180,17 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bwi-bv-YVk" customClass="AutoScrollingBackground" customModule="FlappyBird" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="542" width="375" height="125"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="598" width="414" height="138"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bwi-bv-YVk" secondAttribute="height" multiplier="3:1" id="iog-qK-GMH"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="kfw-zn-0zo">
-                                <rect key="frame" x="130" y="285" width="114" height="98"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="kfw-zn-0zo">
+                                <rect key="frame" x="150" y="320" width="114" height="98"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zD-rH-MiU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="138"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0zD-rH-MiU" secondAttribute="height" multiplier="3:1" id="w9S-u6-DFD"/>
@@ -215,7 +222,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="iPy-HW-CGh"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="background" destination="bwi-bv-YVk" id="ZN1-x9-hv5"/>
                         <outlet property="bird" destination="YgQ-kU-V7a" id="UJt-6t-Cpd"/>
@@ -233,6 +240,7 @@
         <image name="bg_night" width="288" height="512"/>
         <image name="button_play" width="116" height="70"/>
         <image name="font_057" width="24" height="44"/>
+        <image name="land" width="336" height="112"/>
         <image name="medals_2" width="44" height="44"/>
         <image name="new" width="32" height="14"/>
         <image name="score_panel" width="238" height="126"/>

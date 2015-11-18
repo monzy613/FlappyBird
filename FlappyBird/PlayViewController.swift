@@ -61,18 +61,30 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
             initPipe()
         } else {
             if traitCollection.forceTouchCapability == .Unavailable {
-                bird.up()
+                bird.upWithOut3DTouch()
+                NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "noForceTouchDown", userInfo: nil, repeats: false)
             }
         }
     }
+    
+    func noForceTouchDown() {
+        bird.down()
+    }
+    
+    var flyFlag = false
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if traitCollection.forceTouchCapability == .Available {
             if let touch = touches.first {
                 let forceTimes = touch.force / touch.maximumPossibleForce
                 if forceTimes > 0.3 {
+                    if flyFlag == false {
+                        AudioPlayer.fly()
+                        flyFlag = true
+                    }
                     bird.up(forceTimes / 5)
                 } else {
+                    flyFlag = false
                     bird.down()
                 }
             }
@@ -158,12 +170,13 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     func scoreUp() {
         score++
         scoreView!.newScore(score)
-        SoundPlayer.playSound("point.wav")
+        //SoundPlayer.playSound("point.wav")
+        AudioPlayer.play(.Point)
     }
     
     func birdDie() {
         print("bird die[player view]")
-        AudioPlayer.getInstance().play(.Hit)
+        AudioPlayer.play(.Hit)
         pipeGeneratorTimer?.invalidate()
         background.stop()
         showHighScoreBoard()
@@ -186,7 +199,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
             }){
                 complete in
                 //show button
-                AudioPlayer.getInstance().play(.Scroll)
+                AudioPlayer.play(.Scroll)
                 self.showReplayButton()
         }
     }

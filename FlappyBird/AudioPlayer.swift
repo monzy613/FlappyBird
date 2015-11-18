@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class AudioPlayer: NSObject, AVAudioPlayerDelegate {
+class AudioPlayer: NSObject {
     static private var instance: AudioPlayer?
     
     static func getInstance() -> AudioPlayer {
@@ -28,29 +28,39 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     }
     
     var wavDic = [String: NSURL]()
-    var player: AVAudioPlayer?
+    private var player: AVAudioPlayer?
+    private var flyPlayer: AVAudioPlayer?
     
     private override init() {
         super.init()
         wavDic = FileOperator.getWavs()
+        do {
+            self.flyPlayer = try AVAudioPlayer(contentsOfURL: wavDic[Wavs.Fly.rawValue]!)
+            self.flyPlayer?.numberOfLoops = 0
+        } catch {
+        }
     }
-    
     
     
     func play(wav: Wavs) {
         do {
             self.player = try AVAudioPlayer(contentsOfURL: wavDic[wav.rawValue]!)
+            self.player?.numberOfLoops = 0
+            //self.player?.delegate = self
         }
         catch {
             print("error: \(error)")
             return
         }
-        self.player?.delegate = self
         self.player?.play()
     }
     
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        print("finish playing")
+    static func fly() {
+        getInstance().flyPlayer?.play()
+    }
+    
+    static func play(wav: Wavs) {
+        getInstance().play(wav)
     }
     
 }

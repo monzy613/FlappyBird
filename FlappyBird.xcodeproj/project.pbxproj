@@ -29,7 +29,6 @@
 		18A346DF1BF99935003AF5A3 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A346DE1BF99935003AF5A3 /* PlayViewController.swift */; };
 		18A346E11BF9A341003AF5A3 /* AutoScrollingBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A346E01BF9A341003AF5A3 /* AutoScrollingBackground.swift */; };
 		18A346E51BF9C25A003AF5A3 /* BirdBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A346E41BF9C25A003AF5A3 /* BirdBehavior.swift */; };
-		18F5161E1BFB94DB00682F42 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5161D1BFB94DB00682F42 /* SoundPlayer.swift */; };
 		18F9060F1BFB162C00DB1D1D /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9060E1BFB162C00DB1D1D /* SaveData.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +70,6 @@
 		18A346DE1BF99935003AF5A3 /* PlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		18A346E01BF9A341003AF5A3 /* AutoScrollingBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoScrollingBackground.swift; sourceTree = "<group>"; };
 		18A346E41BF9C25A003AF5A3 /* BirdBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirdBehavior.swift; sourceTree = "<group>"; };
-		18F5161D1BFB94DB00682F42 /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		18F9060E1BFB162C00DB1D1D /* SaveData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,7 +125,6 @@
 		18A346B41BF9862B003AF5A3 /* FlappyBird */ = {
 			isa = PBXGroup;
 			children = (
-				18F5161D1BFB94DB00682F42 /* SoundPlayer.swift */,
 				18A346B51BF9862B003AF5A3 /* AppDelegate.swift */,
 				18F9060E1BFB162C00DB1D1D /* SaveData.swift */,
 				180417D71BFB6CD400928FEE /* AudioPlayer.swift */,
@@ -278,7 +275,6 @@
 				18A346E51BF9C25A003AF5A3 /* BirdBehavior.swift in Sources */,
 				1853A51E1BFA18C400BDFD8B /* Pipe.swift in Sources */,
 				18A346DF1BF99935003AF5A3 /* PlayViewController.swift in Sources */,
-				18F5161E1BFB94DB00682F42 /* SoundPlayer.swift in Sources */,
 				1888AFE51BFAFA0D00DDEF0B /* ScoreViewTestViewController.swift in Sources */,
 				18A346DB1BF98C43003AF5A3 /* MainViewController.swift in Sources */,
 				1888AFE31BFAECD800DDEF0B /* ScoreView.swift in Sources */,
