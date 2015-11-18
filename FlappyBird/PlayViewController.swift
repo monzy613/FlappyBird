@@ -26,6 +26,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
     var no3DTouchAutoDownTimer: NSTimer?
     var pipeGeneratorTimer: NSTimer?
     var scoreView: ScoreView?
+    var birdSize: CGFloat = 48
     
     lazy var animator: UIDynamicAnimator = {
         let laziedAnimator = UIDynamicAnimator(referenceView: self.view)
@@ -41,10 +42,12 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         tutorialImage = tutorialImageView.image
         
         initScoreView()
-        bird.configureFlyImage("bird2_0", image2: "bird2_1", image3: "bird2_2", dieY: background.frame.origin.y, startPoint: CGPoint(x: background.frame.height / 2, y: (self.view.frame.height - background.frame.height) / 2))
+        birdSize = background.frame.height * 48 / 125
+        bird.configureFlyImage("bird2_0", image2: "bird2_1", image3: "bird2_2", dieY: background.frame.origin.y, startPoint: CGPoint(x: background.frame.height / 2, y: (self.view.frame.height - background.frame.height) / 2), birdSize: birdSize)
         bird.animate()
         background.configure(UIImage(named: "land")!)
         background.animate()
+        
         initObserver()
         initGameOverComponents()
         scoreBoardSize = (UIImage(named: ImageNames.HighScoreBoard)?.size)!
@@ -156,7 +159,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         view.bringSubviewToFront(bird)
         view.bringSubviewToFront(replayButton!)
         view.bringSubviewToFront(scoreViewRootView)
-        pipe.configure(background.frame.height, startX: self.view.frame.width, birdSize: 48, downPipeImage: UIImage(named: "pipe_down")!,
+        pipe.configure(background.frame.height, startX: self.view.frame.width, birdSize: birdSize, downPipeImage: UIImage(named: "pipe_down")!,
             upPipeImage: UIImage(named: "pipe_up")!)
     }
     
@@ -168,7 +171,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
             view.bringSubviewToFront(bird)
             view.bringSubviewToFront(replayButton!)
             view.bringSubviewToFront(scoreViewRootView)
-            pipe.configure(background.frame.height, startX: self.view.frame.width + (self.view.frame.width * CGFloat(i)) / 2, birdSize: 48, downPipeImage: UIImage(named: "pipe_down")!,
+            pipe.configure(background.frame.height, startX: self.view.frame.width + (self.view.frame.width * CGFloat(i)) / 2, birdSize: birdSize, downPipeImage: UIImage(named: "pipe_down")!,
                 upPipeImage: UIImage(named: "pipe_up")!)
         }
         
@@ -256,7 +259,7 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         bird = nil
         bird = Bird()
         self.view.addSubview(bird)
-        bird.configureFlyImage("bird2_0", image2: "bird2_1", image3: "bird2_2", dieY: background.frame.origin.y, startPoint: CGPoint(x: background.frame.height / 2, y: (self.view.frame.height - background.frame.height) / 2))
+        bird.configureFlyImage("bird2_0", image2: "bird2_1", image3: "bird2_2", dieY: background.frame.origin.y, startPoint: CGPoint(x: background.frame.height / 2, y: (self.view.frame.height - background.frame.height) / 2), birdSize: birdSize)
         background.animate()
         bird.animate()
         tutorialImageView = UIImageView(image: tutorialImage ?? nil)

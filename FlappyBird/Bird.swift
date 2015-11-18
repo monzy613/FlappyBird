@@ -30,7 +30,7 @@ class Bird: UIView {
     
     var isDead = false
     
-    func configureFlyImage(image1: String, image2: String, image3: String, dieY: CGFloat, startPoint: CGPoint) {
+    func configureFlyImage(image1: String, image2: String, image3: String, dieY: CGFloat, startPoint: CGPoint, birdSize: CGFloat) {
         imageView = UIImageView()
         image = UIImage()
         self.imageView!.contentMode = .ScaleAspectFit
@@ -41,7 +41,7 @@ class Bird: UIView {
             currentImage = 1
             self.backgroundColor = UIColor.clearColor()
             self.image = flyImage1
-            self.frame = CGRect(x: startPoint.x, y: startPoint.y, width: 48, height: 48)
+            self.frame = CGRect(x: startPoint.x, y: startPoint.y, width: birdSize, height: birdSize)
             imageView?.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
             self.dieY = dieY
             self.addSubview(imageView!)
@@ -87,7 +87,6 @@ class Bird: UIView {
     func enableDownTimer() {
         timer = 0
         downTimer = nil
-//        downTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "startTimer", userInfo: nil, repeats: true)
     }
     
     func startObservers() {
