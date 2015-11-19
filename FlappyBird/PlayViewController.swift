@@ -72,19 +72,20 @@ class PlayViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
     }
     
-    func noForceTouchDown() {
-        bird.down()
-    }
-    
-    
+    var isFalling = false
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if traitCollection.forceTouchCapability == .Available {
             if let touch = touches.first {
                 let forceTimes = touch.force / touch.maximumPossibleForce
                 if forceTimes > 0.3 {
+                    isFalling = false
                     bird.up(forceTimes / 5)
                 } else {
-                    bird.down()
+                    if isFalling == false {
+                        bird.down()
+                    } else {
+                        isFalling = true
+                    }
                 }
             }
         }

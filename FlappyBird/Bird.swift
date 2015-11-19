@@ -28,6 +28,9 @@ class Bird: UIView {
     var originFrame: CGRect?
     
     var isDead = false
+    var isFlyAnimComplete = true
+    var downTimer: NSTimer?
+
     
     func configureFlyImage(image1: String, image2: String, image3: String, dieY: CGFloat, startPoint: CGPoint, birdSize: CGFloat) {
         imageView = UIImageView()
@@ -130,6 +133,7 @@ class Bird: UIView {
     
     var flyFlag = false
     
+    
     func up(byTimes: CGFloat = 0.5) {
         if animateTimer == nil || isDead == true {
             return
@@ -141,15 +145,25 @@ class Bird: UIView {
 
         birdBehavior.removeGravity(self)
         
+        
+        if self.isFlyAnimComplete == false {
+            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y - self.frame.height * byTimes, width: self.frame.width, height: self.frame.height)
+            return
+        }
+        
         UIView.animateWithDuration(0.1, animations: {
             self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y - self.frame.height * byTimes, width: self.frame.width, height: self.frame.height)
             self.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(-0.25 * M_PI))
-        })
+            }) {
+                complete in
+                if complete == false {
+                    print("not complete")
+                } else {
+                    self.isFlyAnimComplete = true
+                }
+        }
     }
     
-    
-    var isFlyAnimComplete = true
-    var downTimer: NSTimer?
     
     func upWithout3DTouch() {
         if animateTimer == nil || isDead == true {
@@ -158,7 +172,9 @@ class Bird: UIView {
         AudioPlayer.fly()
         birdBehavior.removeGravity(self)
         self.downTimer?.invalidate()
-        if isFlyAnimComplete == false {
+        
+        if self.isFlyAnimComplete == false {
+            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y - self.frame.height * 2 / 3, width: self.frame.width, height: self.frame.height)
             return
         }
         UIView.animateWithDuration(0.15, animations: {
